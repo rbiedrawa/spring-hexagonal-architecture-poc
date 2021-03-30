@@ -1,21 +1,28 @@
 package com.rbiedrawa.hexagonal.app.business.orders.model;
 
-import java.util.List;
+import java.util.UUID;
 
 import org.springframework.util.ObjectUtils;
 
-import lombok.AllArgsConstructor;
+import com.rbiedrawa.hexagonal.app.business.common.UuidGenerator;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 public class NewOrder {
-	private String customerId;
-	private List<String> products;
+	private final UUID orderId = UUID.randomUUID();
+	private final UUID customerId;
+	private final String orderItemName;
 
-	public boolean isValid() {
-		return !ObjectUtils.isEmpty(customerId) && products != null && !products.isEmpty();
+	private NewOrder(UUID customerId, String orderItemName) {
+		this.customerId = customerId;
+		this.orderItemName = orderItemName;
+	}
+
+	public static NewOrder of(String customerId, String orderItemName) throws IllegalStateException {
+		if(ObjectUtils.isEmpty(customerId) || ObjectUtils.isEmpty(orderItemName)) {
+			throw new IllegalStateException("Customer Id or orderItem can't be empty !!!");
+		}
+		return new NewOrder(UuidGenerator.generate(customerId), orderItemName);
 	}
 }

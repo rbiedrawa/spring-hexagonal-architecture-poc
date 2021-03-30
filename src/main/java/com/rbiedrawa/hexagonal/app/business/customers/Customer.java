@@ -3,12 +3,15 @@ package com.rbiedrawa.hexagonal.app.business.customers;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Map;
+import java.util.UUID;
 
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
+@Builder
 public class Customer{
-	private String id;
+	private UUID id;
 	private String emailAddress;
 	private LocalDate birthDate;
 	private String firstName;

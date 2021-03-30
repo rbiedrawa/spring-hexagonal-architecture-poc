@@ -20,7 +20,7 @@ class OrderNotificationService {
 
 	void sendOrderApproved(Order order, Customer customer) {
 		if (customer.isEmailNotificationEnabled()) {
-			emailService.send(customer.getEmailAddress(), "order-approved.template", Map.of("orderId", order.getId()));
+			emailService.send(customer.getEmailAddress(), "order-approved.template", Map.of("orderId", order.idAsString()));
 		}
 
 		if (customer.isSmsNotificationEnabled()) {

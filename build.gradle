@@ -21,6 +21,7 @@ repositories {
 dependencies {
 	// REST - Adapter
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.5.6'
 
 	// Ops
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -28,6 +29,10 @@ dependencies {
 	// Dev tools
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
+
+	// gRPC - Adapter
+	implementation 'com.github.javafaker:javafaker:1.0.2'
 
 	// Test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

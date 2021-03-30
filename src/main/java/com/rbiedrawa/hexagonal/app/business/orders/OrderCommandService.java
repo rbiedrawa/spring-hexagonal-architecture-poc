@@ -20,10 +20,6 @@ public class OrderCommandService {
 	private final OrderNotificationService orderNotificationService;
 
 	public Order createOrder(NewOrder newOrder) {
-		if (!newOrder.isValid()) {
-			throw new IllegalStateException("New order is invalid!!");
-		}
-
 		Customer customer = customerService.findById(newOrder.getCustomerId())
 										   .orElseThrow(() -> new RuntimeException("Customer not found!!!"));
 
@@ -31,7 +27,13 @@ public class OrderCommandService {
 			throw new RuntimeException("Customer below 18 years old can't make order ;P");
 		}
 
-		Order order = orderRepository.save(new Order(null, customer.fullName(), newOrder.getProducts(), new Random().nextDouble()));
+		Order order = orderRepository.save(Order.builder()
+												.id(newOrder.getOrderId())
+												.customerFullName(customer.fullName())
+												.orderItemName(newOrder.getOrderItemName())
+												.totalPrice(new Random().nextDouble())
+												.build());
+
 		orderNotificationService.sendOrderApproved(order, customer);
 
 		return order;

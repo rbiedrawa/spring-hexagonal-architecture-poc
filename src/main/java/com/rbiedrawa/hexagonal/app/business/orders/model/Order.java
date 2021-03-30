@@ -1,17 +1,19 @@
 package com.rbiedrawa.hexagonal.app.business.orders.model;
 
-import java.util.List;
+import java.util.UUID;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
+@Builder
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Order {
-	private String id;
-	private String customerFullName;
-	private List<String> products;
-	private Double totalPrice;
+	private final UUID id;
+	private final String customerFullName;
+	private final String orderItemName;
+	private final Double totalPrice;
+
+	public String idAsString() {
+		return id.toString();
+	}
 }
