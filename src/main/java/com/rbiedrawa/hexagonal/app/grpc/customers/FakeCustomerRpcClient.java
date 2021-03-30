@@ -1,7 +1,6 @@
 package com.rbiedrawa.hexagonal.app.grpc.customers;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.Map;
 import java.util.Optional;
@@ -10,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.stereotype.Service;
 
-import com.rbiedrawa.hexagonal.app.business.customers.Customer;
+import com.rbiedrawa.hexagonal.app.business.customers.models.Customer;
 import com.rbiedrawa.hexagonal.app.business.customers.CustomerService;
 
 import com.github.javafaker.Faker;

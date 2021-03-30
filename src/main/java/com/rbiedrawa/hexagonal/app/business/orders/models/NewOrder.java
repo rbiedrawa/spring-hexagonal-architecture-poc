@@ -1,4 +1,4 @@
-package com.rbiedrawa.hexagonal.app.business.orders.model;
+package com.rbiedrawa.hexagonal.app.business.orders.models;
 
 import java.util.UUID;
 
@@ -23,6 +23,6 @@ public class NewOrder {
 		if(ObjectUtils.isEmpty(customerId) || ObjectUtils.isEmpty(orderItemName)) {
 			throw new IllegalStateException("Customer Id or orderItem can't be empty !!!");
 		}
-		return new NewOrder(UuidGenerator.generate(customerId), orderItemName);
+		return new NewOrder(UuidGenerator.from(customerId), orderItemName);
 	}
 }

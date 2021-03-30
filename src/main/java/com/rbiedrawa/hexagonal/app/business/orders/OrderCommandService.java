@@ -1,13 +1,13 @@
 package com.rbiedrawa.hexagonal.app.business.orders;
 
-import java.util.Random;
+import java.math.BigDecimal;
 
 import org.springframework.stereotype.Service;
 
-import com.rbiedrawa.hexagonal.app.business.customers.Customer;
+import com.rbiedrawa.hexagonal.app.business.customers.models.Customer;
 import com.rbiedrawa.hexagonal.app.business.customers.CustomerService;
-import com.rbiedrawa.hexagonal.app.business.orders.model.NewOrder;
-import com.rbiedrawa.hexagonal.app.business.orders.model.Order;
+import com.rbiedrawa.hexagonal.app.business.orders.models.NewOrder;
+import com.rbiedrawa.hexagonal.app.business.orders.models.Order;
 
 import lombok.RequiredArgsConstructor;
 
@@ -31,7 +31,7 @@ public class OrderCommandService {
 												.id(newOrder.getOrderId())
 												.customerFullName(customer.fullName())
 												.orderItemName(newOrder.getOrderItemName())
-												.totalPrice(new Random().nextDouble())
+												.totalPrice(BigDecimal.TEN)
 												.build());
 
 		orderNotificationService.sendOrderApproved(order, customer);

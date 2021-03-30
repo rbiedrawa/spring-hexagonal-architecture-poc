@@ -1,4 +1,4 @@
-package com.rbiedrawa.hexagonal.app.business.customers;
+package com.rbiedrawa.hexagonal.app.business.customers.models;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -11,13 +11,13 @@ import lombok.Getter;
 @Getter
 @Builder
 public class Customer{
-	private UUID id;
-	private String emailAddress;
-	private LocalDate birthDate;
-	private String firstName;
-	private String lastName;
-	private String phoneNumber;
-	private Map<String, Boolean> notificationPreferences;
+	private final UUID id;
+	private final String emailAddress;
+	private final LocalDate birthDate;
+	private final String firstName;
+	private final String lastName;
+	private final String phoneNumber;
+	private final Map<String, Boolean> notificationPreferences;
 
 	public boolean isSmsNotificationEnabled() {
 		return notificationPreferences.containsKey("smsEnabled") &&

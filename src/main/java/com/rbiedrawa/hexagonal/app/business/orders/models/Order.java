@@ -1,5 +1,6 @@
-package com.rbiedrawa.hexagonal.app.business.orders.model;
+package com.rbiedrawa.hexagonal.app.business.orders.models;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import lombok.Builder;
@@ -11,7 +12,7 @@ public class Order {
 	private final UUID id;
 	private final String customerFullName;
 	private final String orderItemName;
-	private final Double totalPrice;
+	private final BigDecimal totalPrice;
 
 	public String idAsString() {
 		return id.toString();

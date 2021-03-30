@@ -8,7 +8,7 @@ public interface UuidGenerator {
 		return UUID.randomUUID();
 	}
 
-	static UUID generate(String uuid) {
+	static UUID from(String uuid) {
 		return UUID.fromString(uuid);
 	}
 

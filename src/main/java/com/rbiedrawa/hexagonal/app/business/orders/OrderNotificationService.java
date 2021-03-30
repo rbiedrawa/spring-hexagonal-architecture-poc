@@ -4,10 +4,10 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.rbiedrawa.hexagonal.app.business.customers.Customer;
+import com.rbiedrawa.hexagonal.app.business.customers.models.Customer;
 import com.rbiedrawa.hexagonal.app.business.notifications.EmailService;
 import com.rbiedrawa.hexagonal.app.business.notifications.SmsService;
-import com.rbiedrawa.hexagonal.app.business.orders.model.Order;
+import com.rbiedrawa.hexagonal.app.business.orders.models.Order;
 
 import lombok.RequiredArgsConstructor;
 
