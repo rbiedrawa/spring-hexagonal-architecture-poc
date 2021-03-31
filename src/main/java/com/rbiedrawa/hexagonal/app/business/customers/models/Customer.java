@@ -29,7 +29,7 @@ public class Customer{
 			   notificationPreferences.get("emailEnabled");
 	}
 
-	public boolean is18yearsOld() {
+	public boolean is18yearsOldOrAbove() {
 		return Period.between(birthDate, LocalDate.now()).getYears() >= 18;
 	}
 

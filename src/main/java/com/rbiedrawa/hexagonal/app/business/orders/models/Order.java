@@ -13,6 +13,7 @@ public class Order {
 	private final String customerFullName;
 	private final String orderItemName;
 	private final BigDecimal totalPrice;
+	private final OrderStatus status;
 
 	public String idAsString() {
 		return id.toString();

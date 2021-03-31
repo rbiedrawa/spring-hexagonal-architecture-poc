@@ -30,13 +30,14 @@ class OrderController {
 	private final OrderQueryService orderQueryService;
 
 	@PostMapping
-	ResponseEntity<Order> create(@RequestBody CreateOrderRequest createOrderRequest) {
+	OrderDetailsResponse create(@RequestBody CreateOrderRequest createOrderRequest) {
 		log.info("New order {} requested via REST port.", createOrderRequest);
 
-		var newOrder = NewOrder.of(createOrderRequest.getCustomerId(), createOrderRequest.getProduct());
+		var newOrder = NewOrder.of(createOrderRequest.getCustomerId(),
+								   createOrderRequest.getProduct());
 		var orderCreated = orderCommandService.createOrder(newOrder);
 
-		return ResponseEntity.ok(orderCreated);
+		return OrderDetailsResponse.of(orderCreated);
 	}
 
 	@GetMapping("{orderId}")
@@ -47,8 +48,8 @@ class OrderController {
 	}
 
 	@GetMapping
-	ResponseEntity<List<Order>> all() {
-		return ResponseEntity.ok(orderQueryService.findAll());
+	List<Order> findAll() {
+		return orderQueryService.findAll();
 	}
 
 }
