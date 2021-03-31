@@ -9,5 +9,9 @@ spring:
     driver-class-name: org.h2.Driver
     initialization-mode: embedded
     platform: org.hibernate.dialect.PostgreSQL95Dialect
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 30000     # 30 seconds
   jpa:
     open-in-view: false

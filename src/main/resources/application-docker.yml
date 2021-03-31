@@ -1,0 +1,9 @@
+spring:
+  h2:
+    console:
+      enabled: false
+  datasource:
+    url: "jdbc:postgresql://${DATASOURCE_HOST:localhost:5432}/${DATASOURCE_NAME:postgres}"
+    username: "${DATASOURCE_USERNAME:postgres}"
+    password: "${DATASOURCE_PASSWORD:password}"
+    driver-class-name: org.postgresql.Driver

@@ -21,8 +21,13 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+	set('springCloudVersion', "2020.0.2")
+}
+
 dependencies {
 	// Ops
+	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
 	// Dev tools
@@ -49,6 +54,12 @@ dependencies {
 	implementation 'org.flywaydb:flyway-core'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'org.postgresql:postgresql'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
 
 test {

@@ -1,0 +1,30 @@
+---
+version: '2'
+
+services:
+  order-service-db:
+    image: postgres:13.2-alpine
+    container_name: order-service-db
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - "order-service-db:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "password"
+
+  adminer:
+    image: adminer
+    restart: always
+    depends_on:
+      - order-service-db
+    ports:
+      - "7775:8080"
+    environment:
+      ADMINER_DEFAULT_DB_DRIVER: "pgsql"
+      ADMINER_DEFAULT_DB_HOST: "postgres"
+      ADMINER_DEFAULT_DB_NAME: "postgres"
+
+volumes:
+  order-service-db: {}
