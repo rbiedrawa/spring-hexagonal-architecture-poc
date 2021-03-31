@@ -14,19 +14,18 @@ import com.rbiedrawa.hexagonal.app.business.customers.CustomerService;
 
 import com.github.javafaker.Faker;
 
-/**
- * Fake gRPC client, just for demo
- */
 @Service
 class FakeCustomerRpcClient implements CustomerService {
 
-	private static final Map<UUID, Customer> CUSTOMERS_DATA = new ConcurrentHashMap<>();
+	private static final Map<UUID, Customer> CUSTOMERS_GRPC_SERVER = new ConcurrentHashMap<>();
 
 	@Override
 	public Optional<Customer> findById(UUID userId) {
-		return Optional.ofNullable(CUSTOMERS_DATA.get(userId))
+		// Real implementation goes here
+		return Optional.ofNullable(CUSTOMERS_GRPC_SERVER.get(userId))
 					   .or(() -> createFakeCustomer(userId));
 	}
+
 
 	private Optional<Customer> createFakeCustomer(UUID userId) {
 		Faker faker = new Faker();
@@ -41,7 +40,7 @@ class FakeCustomerRpcClient implements CustomerService {
 										.notificationPreferences(Map.of("smsEnabled", true, "emailEnabled", true))
 										.build();
 
-		CUSTOMERS_DATA.put(fakeCustomer.getId(), fakeCustomer);
+		CUSTOMERS_GRPC_SERVER.put(fakeCustomer.getId(), fakeCustomer);
 
 		return Optional.of(fakeCustomer);
 	}
