@@ -22,13 +22,6 @@ repositories {
 }
 
 dependencies {
-	// REST - Adapter
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springdoc:springdoc-openapi-ui:1.5.6'
-
-	// GraphQL
-	implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter:3.8.2'
-
 	// Ops
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
@@ -36,17 +29,26 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
-	// gRPC - Adapter
+	// Test - core
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// ---- ADAPTERS ----
+
+	// REST
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.5.6'
+
+	// GraphQL
+	implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter:3.8.2'
+
+	// gRPC
 	implementation 'com.github.javafaker:javafaker:1.0.2'
 
-	// H2 / Postgres - Adapter
+	// H2 / Postgres
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.flywaydb:flyway-core'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'org.postgresql:postgresql'
-
-	// Test
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {
