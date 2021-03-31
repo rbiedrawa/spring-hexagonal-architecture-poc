@@ -20,7 +20,7 @@ class CustomerResponse {
 	String lastName;
 	String phoneNumber;
 
-	private static CustomerResponse of(Customer customer) {
+	static CustomerResponse of(Customer customer) {
 		return CustomerResponse.builder()
 							   .id(customer.getId().toString())
 							   .emailAddress(customer.getEmailAddress())

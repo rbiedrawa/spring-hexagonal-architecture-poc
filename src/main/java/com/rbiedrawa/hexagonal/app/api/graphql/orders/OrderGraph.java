@@ -33,7 +33,7 @@ public class OrderGraph {
 								.collect(Collectors.toList());
 	}
 
-	@DgsData(parentType = DgsConstants.QUERY.TYPE_NAME, field = DgsConstants.QUERY.OrderById)
+	@DgsData(parentType = DgsConstants.QUERY.TYPE_NAME, field = DgsConstants.QUERY.Order)
 	public OrderDetails findById(@InputArgument("orderId") String orderId) {
 		return orderQueryService.findById(UuidGenerator.from(orderId))
 								.map(OrderAssembler::to)

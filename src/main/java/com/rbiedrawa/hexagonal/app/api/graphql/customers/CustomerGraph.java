@@ -1,6 +1,9 @@
 package com.rbiedrawa.hexagonal.app.api.graphql.customers;
 
 
+import java.time.LocalDate;
+import java.util.Optional;
+
 import com.rbiedrawa.hexagonal.app.api.graphql.gen.DgsConstants;
 import com.rbiedrawa.hexagonal.app.api.graphql.gen.types.CustomerDetails;
 import com.rbiedrawa.hexagonal.app.business.common.UuidGenerator;
@@ -21,7 +24,7 @@ public class CustomerGraph {
 
 	private final CustomerService customerService;
 
-	@DgsData(parentType = DgsConstants.QUERY_TYPE, field = DgsConstants.QUERY.CustomerById)
+	@DgsData(parentType = DgsConstants.QUERY.TYPE_NAME, field = DgsConstants.QUERY.Customer)
 	public CustomerDetails findById(@InputArgument("customerId") String customerId) {
 		log.info("Find customer {} requested via Graphql adapter.", customerId);
 
@@ -31,9 +34,13 @@ public class CustomerGraph {
 	}
 
 	private CustomerDetails to(Customer customer) {
+		var birthDate = Optional.ofNullable(customer.getBirthDate())
+								   .map(LocalDate::toString)
+								   .orElse(null);
+
 		return CustomerDetails.newBuilder()
 							  .id(customer.idAsString())
-							  .birthDate(customer.getBirthDate().toString())
+							  .birthDate(birthDate)
 							  .emailAddress(customer.getEmailAddress())
 							  .firstName(customer.getFirstName())
 							  .lastName(customer.getLastName())

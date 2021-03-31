@@ -1,6 +1,6 @@
 type Query {
-    customerById(customerId: String) : CustomerDetails
-    orderById(orderId: String) : OrderDetails
+    customer(customerId: String) : CustomerDetails
+    order(orderId: String) : OrderDetails
     orders: [OrderDetails]!
 }
 
