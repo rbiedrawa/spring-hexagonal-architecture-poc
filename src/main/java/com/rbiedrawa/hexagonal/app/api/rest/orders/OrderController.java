@@ -18,6 +18,7 @@ import com.rbiedrawa.hexagonal.app.business.orders.models.Order;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomStringUtils;
 
 @Slf4j
 @RestController
@@ -38,6 +39,12 @@ class OrderController {
 		var orderCreated = orderCommandService.createOrder(newOrder);
 
 		return OrderResponse.of(orderCreated);
+	}
+
+	@PostMapping("random")
+	OrderResponse createRandomOrder() {
+		var customerId = UuidGenerator.generateAsString();
+		return create(new CreateOrderRequest(customerId, RandomStringUtils.randomAlphabetic(20)));
 	}
 
 	@GetMapping("{orderId}")

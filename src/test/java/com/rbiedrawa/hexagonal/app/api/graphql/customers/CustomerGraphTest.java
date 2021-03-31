@@ -26,28 +26,25 @@ import org.junit.jupiter.api.Test;
 class CustomerGraphTest {
 
 	@Autowired
-	DgsQueryExecutor dgsQueryExecutor;
+	private DgsQueryExecutor dgsQueryExecutor;
 
-	@MockBean CustomerService customerService;
+	@MockBean
+	private CustomerService customerService;
 
 	@Test
 	void should_return_existing_customer() {
 		// Given
 		var customer = Customer.builder().id(UuidGenerator.generate()).emailAddress("test@test.com").build();
 
+		var graphQLQueryRequest = customerQueryRequestWithProjection(customer.idAsString());
+
 		given(customerService.findById(customer.getId())).willReturn(Optional.of(customer));
 
-		var customerByIdQuery = CustomerGraphQLQuery.newRequest()
-													.customerId(customer.idAsString())
-													.build();
-
-		var projection = new CustomerProjectionRoot().id().emailAddress();
 		// When
-		var result = dgsQueryExecutor.executeAndGetDocumentContext(new GraphQLQueryRequest(customerByIdQuery, projection).serialize());
+		var result = dgsQueryExecutor.executeAndGetDocumentContext(graphQLQueryRequest.serialize());
 
 		// Then
 		then(customerService).should().findById(customer.getId());
-
 
 		assertThat(result).isNotNull();
 		assertThat(result.read("data.customer.id", String.class)).isEqualTo(customer.idAsString());
@@ -57,21 +54,25 @@ class CustomerGraphTest {
 	@Test
 	void should_handle_not_found_exception() {
 		// Given
-		UUID customerId = UuidGenerator.from("ef462c27-6f83-44b6-971c-7c77d6912ad9");
+		var customerId = UuidGenerator.from("ef462c27-6f83-44b6-971c-7c77d6912ad9");
+		var customerQueryRequest = customerQueryRequestWithProjection(customerId.toString());
 
 		given(customerService.findById(customerId)).willThrow(NotFoundException.entityNotFound("Customer", customerId.toString()));
 
+		// When
+		var result = dgsQueryExecutor.execute(customerQueryRequest.serialize());
+
+		// Then
+		assertThat(result.getErrors()).hasSize(1);
+	}
+
+	private GraphQLQueryRequest customerQueryRequestWithProjection(String customerId) {
 		var customerByIdQuery = CustomerGraphQLQuery.newRequest()
-													.customerId(customerId.toString())
+													.customerId(customerId)
 													.build();
 
 		var projection = new CustomerProjectionRoot().id().emailAddress();
 
-
-		// When
-		var result = dgsQueryExecutor.execute(new GraphQLQueryRequest(customerByIdQuery, projection).serialize());
-
-		// Then
-		assertThat(result.getErrors()).hasSize(1);
+		return new GraphQLQueryRequest(customerByIdQuery, projection);
 	}
 }

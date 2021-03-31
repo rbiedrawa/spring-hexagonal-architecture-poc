@@ -1,6 +1,7 @@
 package com.rbiedrawa.hexagonal.app.postgres.orders;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -26,7 +27,7 @@ import org.hibernate.annotations.Type;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-class OrderEntity {
+public class OrderEntity {
 
 	@Id
 	// @Type(type = "pg-uuid")
@@ -60,5 +61,20 @@ class OrderEntity {
 					.totalPrice(this.totalPrice)
 					.status(this.status)
 					.build();
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) { return true; }
+		if (o == null || getClass() != o.getClass()) { return false; }
+
+		OrderEntity that = (OrderEntity) o;
+
+		return Objects.equals(id, that.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 }

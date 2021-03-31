@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.rbiedrawa.hexagonal.app.api.rest.config.GlobalExceptionHandler;
@@ -21,8 +20,7 @@ import com.rbiedrawa.hexagonal.app.business.customers.models.Customer;
 
 import org.junit.jupiter.api.Test;
 
-@ContextConfiguration(classes = {CustomerController.class, GlobalExceptionHandler.class})
-@WebMvcTest
+@WebMvcTest(controllers = {CustomerController.class, GlobalExceptionHandler.class})
 class CustomerControllerTest {
 
 	@Autowired
