@@ -11,7 +11,7 @@ import lombok.Getter;
 public class Order {
 	private final UUID id;
 	private final String customerFullName;
-	private final String orderItemName;
+	private final String productName;
 	private final BigDecimal totalPrice;
 	private final OrderStatus status;
 

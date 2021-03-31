@@ -1,0 +1,31 @@
+type Query {
+    customerById(customerId: String) : CustomerDetails
+    orderById(orderId: String) : OrderDetails
+    orders: [OrderDetails]!
+}
+
+type Mutation {
+    createOrder(createOrder: CreateOrder) : OrderDetails
+}
+
+input CreateOrder {
+    customerId: String,
+    product: String
+}
+
+type OrderDetails {
+    id: String,
+    customerFullName: String,
+    product: String,
+    totalPrice: Float,
+    status: String
+}
+
+type CustomerDetails {
+    id: String,
+    emailAddress: String,
+    birthDate: String,
+    firstName: String,
+    lastName: String
+    phoneNumber: String
+}

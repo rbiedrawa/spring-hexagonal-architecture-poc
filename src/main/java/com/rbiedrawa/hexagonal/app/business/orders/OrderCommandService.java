@@ -4,8 +4,9 @@ import java.math.BigDecimal;
 
 import org.springframework.stereotype.Service;
 
-import com.rbiedrawa.hexagonal.app.business.customers.models.Customer;
+import com.rbiedrawa.hexagonal.app.business.common.exceptions.NotFoundException;
 import com.rbiedrawa.hexagonal.app.business.customers.CustomerService;
+import com.rbiedrawa.hexagonal.app.business.customers.models.Customer;
 import com.rbiedrawa.hexagonal.app.business.orders.models.NewOrder;
 import com.rbiedrawa.hexagonal.app.business.orders.models.Order;
 import com.rbiedrawa.hexagonal.app.business.orders.models.OrderStatus;
@@ -22,16 +23,16 @@ public class OrderCommandService {
 
 	public Order createOrder(NewOrder newOrder) {
 		Customer customer = customerService.findById(newOrder.getCustomerId())
-										   .orElseThrow(() -> new RuntimeException("Customer not found!!!"));
+										   .orElseThrow(() -> NotFoundException.entityNotFound("Customer", newOrder.customerIdAsString()));
 
 		if (!customer.is18yearsOldOrAbove()) {
-			throw new RuntimeException("Customer below 18 years old can't make order ;P");
+			throw OrderValidationException.customerUnder18yearsOld(customer.idAsString());
 		}
 
 		Order order = Order.builder()
 						   .id(newOrder.getOrderId())
 						   .customerFullName(customer.fullName())
-						   .orderItemName(newOrder.getOrderItemName())
+						   .productName(newOrder.getProductName())
 						   .totalPrice(BigDecimal.TEN)
 						   .status(OrderStatus.APPROVED)
 						   .build();

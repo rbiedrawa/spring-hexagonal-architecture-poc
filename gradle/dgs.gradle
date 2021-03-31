@@ -1,0 +1,9 @@
+/* Required plugins:
+*  1) com.netflix.dgs.codegen
+*/
+
+generateJava{
+	schemaPaths = ["${projectDir}/src/main/resources/schema"]
+	packageName = 'com.rbiedrawa.hexagonal.app.api.graphql.gen'
+	generateClient = true
+}

@@ -11,13 +11,13 @@ import lombok.Value;
 
 @Value
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-class OrderDetailsResponse {
+class OrderResponse {
 	String orderId;
 	OrderStatus status;
 	BigDecimal totalPrice;
 
-	static OrderDetailsResponse of(final Order order) {
-		return new OrderDetailsResponse(order.idAsString(), order.getStatus(), order.getTotalPrice());
+	static OrderResponse of(final Order order) {
+		return new OrderResponse(order.idAsString(), order.getStatus(), order.getTotalPrice());
 	}
 
 }

@@ -2,11 +2,14 @@ plugins {
 	id 'org.springframework.boot' version '2.4.4'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id "com.netflix.dgs.codegen" version "4.3.5"
 }
 
 group = 'com.rbiedrawa.hexagonal.architecture'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+
+apply from: 'gradle/dgs.gradle'
 
 configurations {
 	compileOnly {
@@ -22,6 +25,9 @@ dependencies {
 	// REST - Adapter
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springdoc:springdoc-openapi-ui:1.5.6'
+
+	// GraphQL
+	implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter:3.8.2'
 
 	// Ops
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'

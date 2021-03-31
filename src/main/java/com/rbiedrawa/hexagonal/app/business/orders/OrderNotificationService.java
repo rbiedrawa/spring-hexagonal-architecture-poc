@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 class OrderNotificationService {
 
-	private static final String SMS_MESSAGE_FORMAT = "Your order is on its way. Order id: %s";
+	private static final String SMS_MESSAGE_FORMAT = "Your order is on its way! Order id: %s";
 	private static final String ORDER_TEMPLATE_ID = "order-approved.template";
 
 	private final EmailService emailService;

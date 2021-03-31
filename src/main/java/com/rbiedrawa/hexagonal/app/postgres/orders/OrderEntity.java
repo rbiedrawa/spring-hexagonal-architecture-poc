@@ -5,11 +5,15 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.rbiedrawa.hexagonal.app.business.orders.models.Order;
+import com.rbiedrawa.hexagonal.app.business.orders.models.OrderStatus;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,8 +24,8 @@ import org.hibernate.annotations.Type;
 @Builder(toBuilder = true)
 @Table(name = "orders")
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 class OrderEntity {
 
 	@Id
@@ -35,12 +39,16 @@ class OrderEntity {
 	private String orderItemName;
 	private BigDecimal totalPrice;
 
+	@Enumerated(EnumType.STRING)
+	private OrderStatus status;
+
 	public static OrderEntity of(Order order) {
 		return OrderEntity.builder()
 						  .id(order.getId())
 						  .customerFullName(order.getCustomerFullName())
-						  .orderItemName(order.getOrderItemName())
+						  .orderItemName(order.getProductName())
 						  .totalPrice(order.getTotalPrice())
+						  .status(order.getStatus())
 						  .build();
 	}
 
@@ -48,8 +56,9 @@ class OrderEntity {
 		return Order.builder()
 					.id(this.id)
 					.customerFullName(this.customerFullName)
-					.orderItemName(this.orderItemName)
+					.productName(this.orderItemName)
 					.totalPrice(this.totalPrice)
+					.status(this.status)
 					.build();
 	}
 }

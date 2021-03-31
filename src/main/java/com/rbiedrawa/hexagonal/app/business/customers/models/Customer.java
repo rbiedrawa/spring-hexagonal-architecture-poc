@@ -37,4 +37,8 @@ public class Customer{
 		return String.format("%s %s", firstName, lastName);
 	}
 
+	public String idAsString(){
+		return id.toString();
+	}
+
 }

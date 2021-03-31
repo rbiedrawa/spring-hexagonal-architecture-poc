@@ -30,14 +30,14 @@ class OrderController {
 	private final OrderQueryService orderQueryService;
 
 	@PostMapping
-	OrderDetailsResponse create(@RequestBody CreateOrderRequest createOrderRequest) {
+	OrderResponse create(@RequestBody CreateOrderRequest createOrderRequest) {
 		log.info("New order {} requested via REST port.", createOrderRequest);
 
 		var newOrder = NewOrder.of(createOrderRequest.getCustomerId(),
 								   createOrderRequest.getProduct());
 		var orderCreated = orderCommandService.createOrder(newOrder);
 
-		return OrderDetailsResponse.of(orderCreated);
+		return OrderResponse.of(orderCreated);
 	}
 
 	@GetMapping("{orderId}")

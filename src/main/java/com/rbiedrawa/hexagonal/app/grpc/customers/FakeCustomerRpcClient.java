@@ -13,7 +13,9 @@ import com.rbiedrawa.hexagonal.app.business.customers.models.Customer;
 import com.rbiedrawa.hexagonal.app.business.customers.CustomerService;
 
 import com.github.javafaker.Faker;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 class FakeCustomerRpcClient implements CustomerService {
 
@@ -42,6 +44,7 @@ class FakeCustomerRpcClient implements CustomerService {
 
 		CUSTOMERS_GRPC_SERVER.put(fakeCustomer.getId(), fakeCustomer);
 
+		log.info("Stored fake user. UserId: {}", fakeCustomer.getId());
 		return Optional.of(fakeCustomer);
 	}
 
