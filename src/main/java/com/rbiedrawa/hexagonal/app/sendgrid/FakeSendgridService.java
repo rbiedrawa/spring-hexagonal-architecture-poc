@@ -19,7 +19,7 @@ class FakeSendgridService implements EmailService {
 	@Override
 	public void send(String emailAddress, String templateId, Map<String, String> templateVariables) {
 		simulateRemoteCall();
-		log.info("Successfully sent '{}' email to: {}.",templateId, emailAddress);
+		log.info("Successfully sent '{}' email to: {} from SendGrid adapter.",templateId, emailAddress);
 	}
 
 	@SneakyThrows

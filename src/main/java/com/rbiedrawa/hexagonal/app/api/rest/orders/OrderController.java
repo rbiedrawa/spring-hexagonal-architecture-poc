@@ -42,6 +42,8 @@ class OrderController {
 
 	@GetMapping("{orderId}")
 	ResponseEntity<Order> findOne(@PathVariable String orderId) {
+		log.info("Find order {} requested via REST adapter.", orderId);
+
 		return orderQueryService.findById(UuidGenerator.from(orderId))
 								.map(ResponseEntity::ok)
 								.orElse(ResponseEntity.notFound().build());

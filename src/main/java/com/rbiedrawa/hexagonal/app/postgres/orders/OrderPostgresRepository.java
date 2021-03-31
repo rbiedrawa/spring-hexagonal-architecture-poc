@@ -11,7 +11,9 @@ import com.rbiedrawa.hexagonal.app.business.orders.OrderRepository;
 import com.rbiedrawa.hexagonal.app.business.orders.models.Order;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 class OrderPostgresRepository implements OrderRepository {
@@ -21,6 +23,7 @@ class OrderPostgresRepository implements OrderRepository {
 	@Override
 	public Order save(Order order) {
 		var savedEntity = jpaRepository.save(OrderEntity.of(order));
+		log.info("Order saved into database via Postgres adapter. Order details {}", order);
 		return savedEntity.toOrder();
 	}
 

@@ -12,15 +12,18 @@ import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsData;
 import com.netflix.graphql.dgs.InputArgument;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @DgsComponent
 @RequiredArgsConstructor
 public class CustomerGraph {
 
 	private final CustomerService customerService;
 
-	@DgsData(parentType = DgsConstants.QUERY.TYPE_NAME, field = DgsConstants.QUERY.CustomerById)
-	CustomerDetails findById(@InputArgument("customerId") String customerId) {
+	@DgsData(parentType = DgsConstants.QUERY_TYPE, field = DgsConstants.QUERY.CustomerById)
+	public CustomerDetails findById(@InputArgument("customerId") String customerId) {
+		log.info("Find customer {} requested via Graphql adapter.", customerId);
 
 		return customerService.findById(UuidGenerator.from(customerId))
 							  .map(this::to)

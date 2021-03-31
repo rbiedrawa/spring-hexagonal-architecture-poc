@@ -18,7 +18,7 @@ class FakeTwilioSmsService implements SmsService {
 	@Override
 	public void send(String phoneNumber, String message) {
 		simulateRemoteCall();
-		log.info("Successfully sent sms to: {}.", phoneNumber);
+		log.info("Successfully sent sms to: {} from Twilio SMS service.", phoneNumber);
 	}
 
 	@SneakyThrows

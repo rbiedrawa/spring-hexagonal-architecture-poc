@@ -22,10 +22,12 @@ class FakeCustomerRpcClient implements CustomerService {
 	private static final Map<UUID, Customer> CUSTOMERS_GRPC_SERVER = new ConcurrentHashMap<>();
 
 	@Override
-	public Optional<Customer> findById(UUID userId) {
+	public Optional<Customer> findById(UUID customerId) {
 		// Real implementation goes here
-		return Optional.ofNullable(CUSTOMERS_GRPC_SERVER.get(userId))
-					   .or(() -> createFakeCustomer(userId));
+
+		log.info("Searching customer {} via gRPC adapter", customerId);
+		return Optional.ofNullable(CUSTOMERS_GRPC_SERVER.get(customerId))
+					   .or(() -> createFakeCustomer(customerId));
 	}
 
 

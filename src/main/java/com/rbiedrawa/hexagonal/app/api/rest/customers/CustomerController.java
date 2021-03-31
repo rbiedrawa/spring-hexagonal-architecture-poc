@@ -24,7 +24,9 @@ class CustomerController {
 
 	@GetMapping("{customerId}")
 	Customer findById(@PathVariable String customerId) {
-		 return customerService.findById(UuidGenerator.from(customerId))
+		log.info("Find customer {} requested via REST adapter.", customerId);
+
+		return customerService.findById(UuidGenerator.from(customerId))
 							   .orElseThrow(() -> new EntityNotFoundException("test"));
 	}
 }
