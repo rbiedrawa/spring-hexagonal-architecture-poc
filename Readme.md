@@ -1,6 +1,6 @@
 # Hexagonal Architecture / 'Ports & Adapters' Pattern (PoC)
 
-This repository demonstrates my take on 'Hexagonal Architecture' implementation in Java/Spring application.
+This repository demonstrates my Hexagonal architecture implementation in Java/Spring application.
 
 ## Table of Content
 
