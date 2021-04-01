@@ -70,13 +70,13 @@ class OrderGraphTest {
 			.thenReturn(List.of(Order.builder().id(orderId).customerFullName(customerName).build()));
 
 		// When
-		var findAllOrders = OrdersGraphQLQuery.newRequest().build();
+		var ordersQuery = OrdersGraphQLQuery.newRequest().build();
 
-		var graphQLQueryRequest = new GraphQLQueryRequest(findAllOrders, CUSTOMER_FULL_NAME_PROJECTION);
+		var queryRequest = new GraphQLQueryRequest(ordersQuery, CUSTOMER_FULL_NAME_PROJECTION);
 
 		var jsonPath = "data.orders[*].customerFullName";
 
-		List<String> result = dgsQueryExecutor.executeAndExtractJsonPath(graphQLQueryRequest.serialize(), jsonPath);
+		List<String> result = dgsQueryExecutor.executeAndExtractJsonPath(queryRequest.serialize(), jsonPath);
 
 		// Then
 		assertThat(result).isNotEmpty()
@@ -88,7 +88,8 @@ class OrderGraphTest {
 		// Given
 		var productName = "Test Product";
 
-		when(orderCommandService.createOrder(any())).thenReturn(Order.builder().productName(productName).build());
+		when(orderCommandService.createOrder(any()))
+			.thenReturn(Order.builder().productName(productName).build());
 
 		var createOrder = CreateOrder.newBuilder()
 											 .customerId(UuidGenerator.generateAsString())

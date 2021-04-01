@@ -35,7 +35,8 @@ class CustomerControllerTest {
 		var customer = Customer.builder().id(UuidGenerator.generate())
 							   .emailAddress("test@test.com").build();
 
-		when(customerService.findById(customer.getId())).thenReturn(Optional.of(customer));
+		when(customerService.findById(customer.getId()))
+			.thenReturn(Optional.of(customer));
 
 		// When
 		var result = mockMvc.perform(get("/customers/{customerId}", customer.idAsString()));
@@ -51,7 +52,8 @@ class CustomerControllerTest {
 		// Given
 		var customerId = UuidGenerator.from("ef462c27-6f83-44b6-971c-7c77d6912ad9");
 
-		when(customerService.findById(customerId)).thenThrow(NotFoundException.entityNotFound("Customer", customerId.toString()));
+		when(customerService.findById(customerId))
+			.thenThrow(NotFoundException.entityNotFound("Customer", customerId.toString()));
 
 		// When
 		var result = mockMvc.perform(get("/customers/{customerId}", customerId.toString()));

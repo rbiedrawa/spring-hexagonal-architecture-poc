@@ -46,10 +46,11 @@ class OrderCommandServiceTest {
 		var newOrder = NewOrder.of(UuidGenerator.generateAsString(), "product");
 
 		var customerUnder18yrsOld = Customer.builder()
-									.birthDate(LocalDate.now().minusYears(10))
-									.build();
+											.birthDate(LocalDate.now().minusYears(10))
+											.build();
 
-		when(customerService.findById(newOrder.getCustomerId())).thenReturn(Optional.of(customerUnder18yrsOld));
+		when(customerService.findById(newOrder.getCustomerId()))
+			.thenReturn(Optional.of(customerUnder18yrsOld));
 
 		// When / Then
 		assertThatThrownBy(() -> cut.createOrder(newOrder))
@@ -65,7 +66,8 @@ class OrderCommandServiceTest {
 
 		var customer = validCustomer();
 
-		when(customerService.findById(newOrder.getCustomerId())).thenReturn(Optional.of(customer));
+		when(customerService.findById(newOrder.getCustomerId()))
+			.thenReturn(Optional.of(customer));
 
 		// When
 		cut.createOrder(newOrder);

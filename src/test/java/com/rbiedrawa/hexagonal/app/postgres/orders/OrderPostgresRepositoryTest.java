@@ -17,9 +17,6 @@ import com.rbiedrawa.hexagonal.app.business.orders.models.OrderStatus;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Just for demo, never test framework ;>
- */
 @DataJpaTest(includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = OrderPostgresRepository.class))
 class OrderPostgresRepositoryTest {
 

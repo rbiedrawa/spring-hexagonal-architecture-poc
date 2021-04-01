@@ -37,7 +37,8 @@ class CustomerGraphTest {
 
 		var graphQLQueryRequest = customerQueryRequestWithProjection(customer.idAsString());
 
-		given(customerService.findById(customer.getId())).willReturn(Optional.of(customer));
+		given(customerService.findById(customer.getId()))
+			.willReturn(Optional.of(customer));
 
 		// When
 		var result = dgsQueryExecutor.executeAndGetDocumentContext(graphQLQueryRequest.serialize());
@@ -56,7 +57,8 @@ class CustomerGraphTest {
 		var customerId = UuidGenerator.from("ef462c27-6f83-44b6-971c-7c77d6912ad9");
 		var customerQueryRequest = customerQueryRequestWithProjection(customerId.toString());
 
-		given(customerService.findById(customerId)).willThrow(NotFoundException.entityNotFound("Customer", customerId.toString()));
+		given(customerService.findById(customerId))
+			.willThrow(NotFoundException.entityNotFound("Customer", customerId.toString()));
 
 		// When
 		var result = dgsQueryExecutor.execute(customerQueryRequest.serialize());
