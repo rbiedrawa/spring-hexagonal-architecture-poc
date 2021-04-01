@@ -37,7 +37,7 @@ public class OrderEntity {
 	private UUID id = UUID.randomUUID();
 
 	private String customerFullName;
-	private String orderItemName;
+	private String productName;
 	private BigDecimal totalPrice;
 
 	@Enumerated(EnumType.STRING)
@@ -47,7 +47,7 @@ public class OrderEntity {
 		return OrderEntity.builder()
 						  .id(order.getId())
 						  .customerFullName(order.getCustomerFullName())
-						  .orderItemName(order.getProductName())
+						  .productName(order.getProductName())
 						  .totalPrice(order.getTotalPrice())
 						  .status(order.getStatus())
 						  .build();
@@ -57,7 +57,7 @@ public class OrderEntity {
 		return Order.builder()
 					.id(this.id)
 					.customerFullName(this.customerFullName)
-					.productName(this.orderItemName)
+					.productName(this.productName)
 					.totalPrice(this.totalPrice)
 					.status(this.status)
 					.build();

@@ -7,9 +7,12 @@ import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.test.context.jdbc.Sql;
 
 import com.rbiedrawa.hexagonal.app.business.common.UuidGenerator;
+import com.rbiedrawa.hexagonal.app.business.orders.models.Order;
 import com.rbiedrawa.hexagonal.app.business.orders.models.OrderStatus;
 
 import org.junit.jupiter.api.Test;
@@ -17,32 +20,31 @@ import org.junit.jupiter.api.Test;
 /**
  * Just for demo, never test framework ;>
  */
-@DataJpaTest
-class OrderJpaRepositoryTest {
+@DataJpaTest(includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = OrderPostgresRepository.class))
+class OrderPostgresRepositoryTest {
 
 	@Autowired
 	private TestEntityManager entityManager;
 
 	@Autowired
-	private OrderJpaRepository cut;
+	private OrderPostgresRepository cut;
 
 	@Test
 	void should_save_new_order() {
 		// Given
-		var newOrder = OrderEntity.builder()
-								  .status(OrderStatus.REJECTED)
-								  .customerFullName("User Test")
-								  .orderItemName("Test product")
-								  .totalPrice(BigDecimal.TEN)
-								  .build();
+		var newOrder = Order.builder()
+							.status(OrderStatus.REJECTED)
+							.customerFullName("User Test")
+							.productName("Test product")
+							.totalPrice(BigDecimal.TEN)
+							.build();
 
 		// When
 		var order = cut.save(newOrder);
 
 		// Then
 		assertThat(order.getId()).isNotNull();
-		assertThat(entityManager.getEntityManager().contains(order)).isTrue();
-		assertThat(entityManager.find(OrderEntity.class, newOrder.getId())).isEqualTo(order);
+		assertThat(entityManager.find(OrderEntity.class, order.getId())).isNotNull();
 	}
 
 	@Test

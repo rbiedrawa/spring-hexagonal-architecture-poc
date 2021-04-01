@@ -17,6 +17,7 @@ public class Customer{
 	private final String firstName;
 	private final String lastName;
 	private final String phoneNumber;
+	//TODO: build better model
 	private final Map<String, Boolean> notificationPreferences;
 
 	public boolean isSmsNotificationEnabled() {

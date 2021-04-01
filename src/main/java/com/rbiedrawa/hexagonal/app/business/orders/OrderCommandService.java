@@ -26,7 +26,7 @@ public class OrderCommandService {
 										   .orElseThrow(() -> NotFoundException.entityNotFound("Customer", newOrder.customerIdAsString()));
 
 		if (!customer.is18yearsOldOrAbove()) {
-			throw OrderValidationException.customerUnder18yearsOld(customer.idAsString());
+			throw OrderValidationException.customerUnder18yearsOld(newOrder.customerIdAsString());
 		}
 
 		Order order = Order.builder()
