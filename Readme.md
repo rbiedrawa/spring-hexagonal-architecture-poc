@@ -39,7 +39,7 @@ Order Service is a simple microservice that allows customers to manage orders vi
 +-- api:  # contains primary/driving adapters.
 |   +-- graphql # GraphQL primary adapter classes.
 |   +-- rest # Rest primary adapter classes.
-+-- business # core of our application, contains pure domain business logic, does not have any external dependencies. All communications goes through ports.
++-- business # core of our application. Contains pure domain business logic, doesn't have any external dependencies. All communications goes through ports.
 |   +-- common # shared configuration.
 |   +-- customers # customers feature.
 |   +-- notifications # notifications feature.
