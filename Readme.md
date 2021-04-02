@@ -22,17 +22,6 @@ Order Service is a simple microservice that allows customers to manage orders vi
 
 ![architecture](./_docs/img/application-diagram.png)
 
-### Available Adapters
-
-* Primary/Driving:
-    * GraphqlQL
-    * REST
-* Secondary/Driven:
-    * Postgres
-    * gRPC
-    * Sendgrid
-    * Twilio
-  
 ## Project package structure
 
 ```shell
