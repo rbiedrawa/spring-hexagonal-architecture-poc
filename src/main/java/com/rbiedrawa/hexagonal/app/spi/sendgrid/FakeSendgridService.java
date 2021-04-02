@@ -1,4 +1,4 @@
-package com.rbiedrawa.hexagonal.app.sendgrid;
+package com.rbiedrawa.hexagonal.app.spi.sendgrid;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;

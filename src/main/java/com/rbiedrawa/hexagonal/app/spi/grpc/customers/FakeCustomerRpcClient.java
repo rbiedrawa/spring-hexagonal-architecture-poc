@@ -1,4 +1,4 @@
-package com.rbiedrawa.hexagonal.app.grpc.customers;
+package com.rbiedrawa.hexagonal.app.spi.grpc.customers;
 
 import java.time.LocalDate;
 import java.time.ZoneOffset;

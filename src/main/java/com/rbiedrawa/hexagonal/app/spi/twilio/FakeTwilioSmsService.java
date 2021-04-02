@@ -1,4 +1,4 @@
-package com.rbiedrawa.hexagonal.app.twilio;
+package com.rbiedrawa.hexagonal.app.spi.twilio;
 
 import java.util.concurrent.TimeUnit;
 

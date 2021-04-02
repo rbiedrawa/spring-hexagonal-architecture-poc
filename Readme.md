@@ -25,7 +25,7 @@ Order Service is a simple microservice that allows customers to manage orders vi
 ## Project package structure
 
 ```shell
-+-- api:  # contains primary/driving adapters.
++-- api:  # Application Provider Interface - contains primary/driving adapters.
 |   +-- graphql # GraphQL primary adapter classes.
 |   +-- rest # Rest primary adapter classes.
 +-- business # core of our application. Contains pure domain business logic, doesn't have any external dependencies. All communications goes through ports.
@@ -34,13 +34,14 @@ Order Service is a simple microservice that allows customers to manage orders vi
 |   +-- notifications # notifications feature.
 |   +-- orders # orders feature.
 +-- config # common Spring configuration.
-+-- grpc # fake gRPC secondary adapter.
-|   +-- customers # customers fake gRPC client.
-+-- postgres # PostgreSQL secondary adapter.
-|   +-- config # postgres configuration classes.
-|   +-- orders # orders feature.
-+-- sendgrid # fake Sendgrid secondary adapter.
-+-- twilio # fake Twilio secondary adapter.
++-- spi # Service Provider Interface - contains secondary/driven adapters.
+|   +-- grpc # fake gRPC client adapter.
+|       +-- customers # customers feature.
+|   +-- postgres # PostgreSQL adapter.
+|       +-- config # postgres configuration classes.
+|       +-- orders # orders feature.
+|   +-- sendgrid # fake Sendgrid adapter.
+|   +-- twilio # fake Twilio adapter.
 ```
 
 ## Getting Started
@@ -81,6 +82,7 @@ Order Service is a simple microservice that allows customers to manage orders vi
 * [Netflix Blog - Ready for changes with Hexagonal Architecture](https://netflixtechblog.com/ready-for-changes-with-hexagonal-architecture-b315ec967749)
 * [More Testable Code with the Hexagonal Architecture](https://www.youtube.com/watch?v=ujb_O6myknY)
 * [How to implement equals and hashCode using the JPA entity identifier (Primary Key)](https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/)
+* [Service provider interface](https://en.wikipedia.org/wiki/Service_provider_interface)
 
 ## License
 

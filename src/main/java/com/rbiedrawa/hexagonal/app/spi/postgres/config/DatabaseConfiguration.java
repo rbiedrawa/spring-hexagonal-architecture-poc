@@ -1,4 +1,4 @@
-package com.rbiedrawa.hexagonal.app.postgres.config;
+package com.rbiedrawa.hexagonal.app.spi.postgres.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;

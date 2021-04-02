@@ -1,4 +1,4 @@
-package com.rbiedrawa.hexagonal.app.postgres.orders;
+package com.rbiedrawa.hexagonal.app.spi.postgres.orders;
 
 import java.util.List;
 import java.util.Optional;
