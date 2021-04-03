@@ -94,7 +94,7 @@ Order Service is a simple microservice that allows customers to manage orders vi
 * [Netflix Blog - Ready for changes with Hexagonal Architecture](https://netflixtechblog.com/ready-for-changes-with-hexagonal-architecture-b315ec967749)
 * [More Testable Code with the Hexagonal Architecture](https://www.youtube.com/watch?v=ujb_O6myknY)
 * [How to implement equals and hashCode using the JPA entity identifier (Primary Key)](https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/)
-* [Service provider interface](https://en.wikipedia.org/wiki/Service_provider_interface)
+* [SPI - Service Provider Interface](https://en.wikipedia.org/wiki/Service_provider_interface)
 
 ## License
 
