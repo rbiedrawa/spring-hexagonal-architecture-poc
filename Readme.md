@@ -4,6 +4,17 @@ This repository demonstrates my Hexagonal architecture implementation in Java/Sp
 
 ## Table of Content
 
+- [Ports & Adapters Pattern](#ports--adapters-pattern)
+- [Order Service](#order-service)
+  * [Application Diagram](#application-diagram)
+- [Project package structure](#project-package-structure)
+- [Getting Started](#getting-started)
+  * [Prerequisite](#prerequisite)
+  * [Installation](#installation)
+- [Important Endpoints](#important-endpoints)
+- [References](#references)
+- [License](#license)
+
 ## Ports & Adapters Pattern
 
 > Allow an application to equally be driven by users, programs, automated test or batch scripts, and to be developed and tested in isolation from its eventual run-time devices and databases.
@@ -43,6 +54,7 @@ Order Service is a simple microservice that allows customers to manage orders vi
 |   +-- sendgrid # fake Sendgrid adapter.
 |   +-- twilio # fake Twilio adapter.
 ```
+*** *One of many ways to structure your packages, always discuss and agree inside Your team;)*
 
 ## Getting Started
 
