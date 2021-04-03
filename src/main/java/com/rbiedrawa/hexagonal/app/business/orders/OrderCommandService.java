@@ -13,6 +13,7 @@ import com.rbiedrawa.hexagonal.app.business.orders.models.OrderStatus;
 
 import lombok.RequiredArgsConstructor;
 
+// @UseCase
 @Service
 @RequiredArgsConstructor
 public class OrderCommandService {

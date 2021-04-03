@@ -11,6 +11,7 @@ import com.rbiedrawa.hexagonal.app.business.orders.models.Order;
 
 import lombok.RequiredArgsConstructor;
 
+// @UseCase
 @Service
 @RequiredArgsConstructor
 class OrderNotificationService {
