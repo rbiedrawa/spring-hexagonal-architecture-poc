@@ -1,10 +1,10 @@
-# Hexagonal Architecture / 'Ports & Adapters' Pattern (PoC)
+# Hexagonal Architecture / Ports & Adapters Pattern (PoC)
 
 This repository demonstrates my Hexagonal architecture implementation in Java/Spring application.
 
 ## Table of Content
 
-## 'Ports & Adapters' Pattern
+## Ports & Adapters Pattern
 
 > Allow an application to equally be driven by users, programs, automated test or batch scripts, and to be developed and tested in isolation from its eventual run-time devices and databases.
 >
