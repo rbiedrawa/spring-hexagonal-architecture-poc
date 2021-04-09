@@ -1,4 +1,4 @@
-create table orders
+create table ORDERS
 (
     id                 uuid not null,
     customer_full_name varchar(255),
