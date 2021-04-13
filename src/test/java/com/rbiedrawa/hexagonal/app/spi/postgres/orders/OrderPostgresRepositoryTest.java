@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 
 import com.rbiedrawa.hexagonal.app.business.common.UuidGenerator;
@@ -17,6 +18,7 @@ import com.rbiedrawa.hexagonal.app.business.orders.models.OrderStatus;
 
 import org.junit.jupiter.api.Test;
 
+@ActiveProfiles("test")
 @DataJpaTest(includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = OrderPostgresRepository.class))
 class OrderPostgresRepositoryTest {
 

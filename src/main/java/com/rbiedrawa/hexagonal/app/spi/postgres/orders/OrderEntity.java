@@ -1,13 +1,13 @@
 package com.rbiedrawa.hexagonal.app.spi.postgres.orders;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 import java.util.UUID;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,10 +19,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
 
 @Entity
-@Builder(toBuilder = true)
+@Builder
 @Table(name = "orders")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -30,11 +29,8 @@ import org.hibernate.annotations.Type;
 public class OrderEntity {
 
 	@Id
-	// @Type(type = "pg-uuid")
-	@Type(type = "org.hibernate.type.PostgresUUIDType")
-	@Column(unique = true, nullable = false, columnDefinition = "uuid")
-	@Builder.Default
-	private UUID id = UUID.randomUUID();
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private UUID id;
 
 	private String customerFullName;
 	private String productName;
@@ -63,18 +59,22 @@ public class OrderEntity {
 					.build();
 	}
 
+	// https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) { return true; }
-		if (o == null || getClass() != o.getClass()) { return false; }
+		if (this == o) return true;
 
-		OrderEntity that = (OrderEntity) o;
+		if (!(o instanceof OrderEntity))
+			return false;
 
-		return Objects.equals(id, that.id);
+		OrderEntity other = (OrderEntity) o;
+
+		return id != null &&
+			   id.equals(other.getId());
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return getClass().hashCode();
 	}
 }
