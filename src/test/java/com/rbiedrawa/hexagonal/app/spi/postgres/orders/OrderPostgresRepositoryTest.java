@@ -28,6 +28,7 @@ class OrderPostgresRepositoryTest {
 	@Autowired
 	private OrderPostgresRepository cut;
 
+	// @Rollback(false)
 	@Test
 	void should_save_new_order() {
 		// Given
