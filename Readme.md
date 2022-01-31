@@ -9,7 +9,7 @@ This repository demonstrates how to implement Hexagonal architecture in Java/Spr
   * [Application Diagram](#application-diagram)
 - [Project package structure](#project-package-structure)
 - [Getting Started](#getting-started)
-  * [Prerequisite](#prerequisite)
+  * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 - [Important Endpoints](#important-endpoints)
 - [References](#references)
@@ -58,7 +58,7 @@ Order Service is a simple microservice that allows customers to manage orders vi
 
 ## Getting Started
 
-### Prerequisite
+### Prerequisites
 
 * Java 11
 * PostgreSQL
